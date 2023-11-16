@@ -33,9 +33,8 @@ if [ $? -ne 0 ]; then
 fi
 
 # 4. Etapa 2 - Build: Invocar Repositorio.sh
-print_message "Etapa 2 - Build: Invocando Repositorio.sh y Configuracion.sh..." "$BLUE"
+print_message "Etapa 2 - Build: Invocando Repositorio.sh..." "$BLUE"
 ./Repositorio.sh
-./Configuracion.sh
 
 # Verificar el resultado de Repositorio.sh
 if [ $? -ne 0 ]; then
@@ -43,11 +42,11 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-# 5. Etapa 3 - Deploy: Invocar Deploy.sh
-print_message "Etapa 3 - Deploy: Invocando Deploy.sh..." "$BLUE"
-./Deploy.sh
+# 5. Etapa 3 - Deploy: Invocar Configuracion.sh
+print_message "Etapa 3 - Deploy: Invocando Configuracion.sh..." "$BLUE"
+./Configuracion.sh
 
-# Verificar el resultado de Deploy.sh
+# Verificar el resultado de Configuracion.sh
 if [ $? -ne 0 ]; then
     print_message "Error en la etapa 3. ¡Deteniendo el despliegue!" "$RED"
     exit 1
