@@ -31,8 +31,12 @@ configure_apache() {
     echo -e "${BLUE}Configurando Apache...${NC}"
 	echo -e "${BLUE}Respaldando el index.html de Apache...${NC}"
     sudo mv /var/www/html/index.html /var/www/html/index.html.bkp
-    sudo sed -i 's/DirectoryIndex index.php index.html index.cgi index.pl index.xhtml index.htm/DirectoryIndex index.php index.html index.cgi index.pl index.xhtml index.htm/g' /etc/apache2/mods-enabled/dir.conf
-    sudo systemctl restart apache2
+    cat << EOF > /etc/apache2/mods-enabled/dir.conf
+	<IfModule mod_dir.c>
+        DirectoryIndex index.php index.html index.cgi index.pl index.xhtml index.htm
+	</IfModule>
+EOF
+    sudo systemctl reload apache2
     echo -e "${BLUE}Comprobando el estado de Apache...${NC}"
     sudo systemctl status apache2
 }
