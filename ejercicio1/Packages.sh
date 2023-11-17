@@ -45,7 +45,8 @@ configure_mariadb() {
         echo -e "${BLUE}MariaDB ya está en ejecución.${NC}"
     else
         echo -e "${BLUE}Iniciando el servicio de MariaDB...${NC}"
-        sudo systemctl start mariadb
+        sudo systemctl start mariadb.service
+		sudo systemctl enable mariadb
     fi
 
     # Comprobar el estado del servicio de MariaDB
@@ -54,12 +55,13 @@ configure_mariadb() {
     
     # Crear la base de datos en MariaDB
     echo -e "${BLUE}Creando la base de datos en MariaDB...${NC}"
-    sudo mysql <<EOF
-CREATE DATABASE devopstravel;
-CREATE USER 'codeuser'@'localhost' IDENTIFIED BY 'codepass';
-GRANT ALL PRIVILEGES ON *.* TO 'codeuser'@'localhost';
-FLUSH PRIVILEGES;
-EOF
+    sudo mysql -e "
+    CREATE DATABASE IF NOT EXISTS devopstravel;
+    CREATE USER IF NOT EXISTS 'codeuser'@'localhost' IDENTIFIED BY 'codepass';
+    GRANT ALL PRIVILEGES ON *.* TO 'codeuser'@'localhost';
+    FLUSH PRIVILEGES;
+    SHOW DATABASES;
+    "
 }
 
 # 1. Comprobar y actualizar el servidor

@@ -20,10 +20,11 @@ if [ ! -f "$config_file" ]; then
     exit 1
 fi
 
-# Reemplazar el espacio vacío con "codepass" en la línea 4
+# Reemplazar el espacio vacío con "codepass" en config.php
 print_message "Reemplazando password en config.php..."
-sed -i 's/""/"codepass"/g' "$config_file"
+sudo sed -i 's/""/"codepass"/g' "$config_file"
 print_message "Servicio apache reiniciado..."
-systemctl reload apache2
+sudo systemctl reload apache2
+sudo cat /var/www/html/config.php
 
 print_message "${GREEN}Configuración completada.${NC}"

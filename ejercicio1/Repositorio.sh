@@ -29,15 +29,20 @@ git checkout clase2-linux-bash
 # 3. Copiar contenido de 'app-295devops-travel' a '/var/www/html'
 print_message "Copiando contenido a /var/www/html..."
 cp -r app-295devops-travel/* /var/www/html
+sudo systemctl reload apache2
 
 # 4. Ejecutar el script SQL
 print_message "Ejecutando el script SQL 'devopstravel.sql'..."
-mysql -u codeuser -pcodepass devopstravel < /var/www/html/database/devopstravel.sql
+sudo mysql < /var/www/html/database/devopstravel.sql
+sudo mysql -e "
+    USE devopstravel;
+    SHOW TABLES;
+    "
 
 # 5. Validar el funcionamiento del sitio
 print_message "Validando el funcionamiento del sitio http://localhost/info.php..."
 print_message "Servicio apache reiniciado..."
-systemctl reload apache2
+sudo systemctl reload apache2
 if curl -s http://localhost/info.php | grep -q "DevOps Travel"; then
     print_message "${GREEN}El sitio funciona correctamente.${NC}"
 else
