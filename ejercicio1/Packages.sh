@@ -3,32 +3,25 @@
 # Colores para mensajes
 GREEN='\033[0;32m'
 BLUE='\033[0;34m'
+YELLOW='\033[1;33m'
 NC='\033[0m' # Sin color
 
-# Función para verificar e instalar paquetes
-check_and_install() {
-    package_name=$1
-    echo -e "${BLUE}Verificando si $package_name está instalado...${NC}"
-    if ! dpkg -l | grep -q "$package_name"; then
-        echo -e "${BLUE}Instalando $package_name...${NC}"
-        sudo apt install -y "$package_name"
-    else
-        echo -e "${BLUE}$package_name ya está instalado.${NC}"
-    fi
-}
-
-# Función para configurar Git
-configure_git() {
-    echo -e "${BLUE}Configurando Git...${NC}"
+# Función para instalar y configurar Git
+install_git() {
+    echo -e "${BLUE}Instalando y Configurando Git...${NC}"
+	apt install -y git
 	git config --list
     git config --global user.name "YazmaniReyesH"
     git config --global user.email "yazmani.reyesh@gmail.com"
 	git config --global --add safe.directory '*'
 }
 
-# Función para configurar Apache
-configure_apache() {
-    echo -e "${BLUE}Configurando Apache...${NC}"
+# Función para instalar y configurar Apache
+install_apache() {
+    echo -e "${BLUE}Instalando y Configurando Apache...${NC}"
+	apt install apache2 -y
+	systemctl start apache2
+    systemctl enable apache2
 	echo -e "${BLUE}Respaldando el index.html de Apache...${NC}"
     sudo mv /var/www/html/index.html /var/www/html/index.html.bkp
     cat << EOF > /etc/apache2/mods-enabled/dir.conf
@@ -41,15 +34,18 @@ EOF
     sudo systemctl status apache2
 }
 
-# Función para configurar MariaDB
-configure_mariadb() {
-    echo -e "${BLUE}Configurando MariaDB...${NC}"
+# Función para instalar y configurar MariaDB
+install_mariadb() {
+    echo -e "${BLUE}Instalando y Configurando MariaDB...${NC}"
+	apt install -y mariadb-server
+	systemctl start mariadb
+    systemctl enable mariadb
     # Verificar el estado de MariaDB y comenzar el servicio si no está en ejecución
     if sudo systemctl is-active --quiet mariadb; then
         echo -e "${BLUE}MariaDB ya está en ejecución.${NC}"
     else
         echo -e "${BLUE}Iniciando el servicio de MariaDB...${NC}"
-        sudo systemctl start mariadb.service
+        sudo systemctl start mariadb
 		sudo systemctl enable mariadb
     fi
 
@@ -68,24 +64,46 @@ configure_mariadb() {
     "
 }
 
+# Función para instalar y configurar php
+install_php() {
+    echo -e "${BLUE}Instalando y Configurando php...${NC}"
+    apt install -y php libapache2-mod-php php-mysql php-mbstring php-zip php-gd php-json php-curl 
+    php -v
+}
+
 # 1. Comprobar y actualizar el servidor
 echo -e "${BLUE}Comprobando y actualizando el servidor...${NC}"
-sudo apt update && sudo apt upgrade -y
+sudo apt-get update
 
 # 2. Verificar e instalar Git
-check_and_install "git"
-configure_git
+if dpkg -s git > /dev/null 2>&1; then
+    echo -e "\n${YELLOW}Git ya está instalado en tu sistema.${NC}"
+    git --version
+else
+    install_git
+fi
 
 # 3. Verificar e instalar Apache
-check_and_install "apache2"
-configure_apache
+if dpkg -s apache2 > /dev/null 2>&1; then
+    echo -e "\n${YELLOW}Apache ya está instalado en tu sistema.${NC}"
+else
+    install_apache
+fi
 
 # 4. Verificar e instalar MariaDB
-check_and_install "mariadb-server"
-configure_mariadb
+if dpkg -s mariadb-server > /dev/null 2>&1; then
+    echo -e "\n${YELLOW}mariadb-server se encuentra instalado ...${NC}"
+else
+    install_mariadb
+fi
 
 # 5. Verificar e instalar PHP
-check_and_install "php"
+if dpkg -s php > /dev/null 2>&1; then
+    echo -e "\n${YELLOW}php ya está instalado en tu sistema.${NC}"
+    php -v
+else
+    install_php
+fi
 
 # Mensaje de finalización
 echo -e "${GREEN}Instalación completada.${NC}"

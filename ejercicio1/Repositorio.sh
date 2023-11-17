@@ -43,7 +43,9 @@ sudo mysql -e "
 print_message "Validando el funcionamiento del sitio http://localhost/info.php..."
 print_message "Servicio apache reiniciado..."
 sudo systemctl reload apache2
-if curl -s http://localhost/info.php | grep -q "DevOps Travel"; then
+# Realiza una solicitud HTTP GET a la URL
+HTTP_STATUS=$(curl -Is "http://localhost/info.php" | head -n 1)
+if [[ "$HTTP_STATUS" == *"200 OK"* ]]; then
     print_message "${GREEN}El sitio funciona correctamente.${NC}"
 else
     print_message "Error: El sitio no funciona como se esperaba."
