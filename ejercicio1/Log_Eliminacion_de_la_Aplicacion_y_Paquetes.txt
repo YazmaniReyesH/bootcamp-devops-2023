@@ -1,0 +1,253 @@
+root@ubuntu2204:/home/vagrant# ls
+bootcamp-devops-2023
+root@ubuntu2204:/home/vagrant# cd bootcamp-devops-2023/
+root@ubuntu2204:/home/vagrant/bootcamp-devops-2023# cd ejercicio1/
+root@ubuntu2204:/home/vagrant/bootcamp-devops-2023/ejercicio1# ls
+Configuracion.sh  Deploy.sh  Notify.sh  Packages.sh  Repositorio.sh  Uninstall.sh
+root@ubuntu2204:/home/vagrant/bootcamp-devops-2023/ejercicio1# ./Uninstall.sh
+
+Desinstalando git
+
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following packages will be REMOVED:
+  git* ubuntu-server*
+0 upgraded, 0 newly installed, 2 to remove and 62 not upgraded.
+After this operation, 19.0 MB disk space will be freed.
+(Reading database ... 83949 files and directories currently installed.)
+Removing ubuntu-server (1.481.1) ...
+Removing git (1:2.34.1-1ubuntu1.10) ...
+(Reading database ... 83154 files and directories currently installed.)
+Purging configuration files for git (1:2.34.1-1ubuntu1.10) ...
+
+Limpiando el directorio de archivos estaticos
+
+
+Desinstalando apache
+
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following packages were automatically installed and are no longer required:
+  apache2-data apache2-utils ssl-cert
+Use 'sudo apt autoremove' to remove them.
+The following packages will be REMOVED:
+  apache2*
+0 upgraded, 0 newly installed, 1 to remove and 62 not upgraded.
+After this operation, 546 kB disk space will be freed.
+(Reading database ... 83153 files and directories currently installed.)
+Removing apache2 (2.4.52-1ubuntu4.7) ...
+Processing triggers for man-db (2.10.2-1) ...
+Processing triggers for ufw (0.36.1-4ubuntu0.1) ...
+(Reading database ... 83101 files and directories currently installed.)
+Purging configuration files for apache2 (2.4.52-1ubuntu4.7) ...
+Processing triggers for ufw (0.36.1-4ubuntu0.1) ...
+
+Desinstalando mariadb
+
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+Note, selecting 'mariadb-tokudb-engine-5.5' for glob 'mariadb-*'
+Note, selecting 'mariadb-server-core-5.5' for glob 'mariadb-*'
+Note, selecting 'mariadb-plugin-spider' for glob 'mariadb-*'
+Note, selecting 'mariadb-server' for glob 'mariadb-*'
+Note, selecting 'mariadb-plugin-s3' for glob 'mariadb-*'
+Note, selecting 'mariadb-galera-server-5.5' for glob 'mariadb-*'
+Note, selecting 'mariadb-test' for glob 'mariadb-*'
+Note, selecting 'mariadb-plugin-mroonga' for glob 'mariadb-*'
+Note, selecting 'mariadb-client-core-5.5' for glob 'mariadb-*'
+Note, selecting 'mariadb-connect-engine-10.0' for glob 'mariadb-*'
+Note, selecting 'mariadb-connect-engine-10.1' for glob 'mariadb-*'
+Note, selecting 'mariadb-oqgraph-engine-10.0' for glob 'mariadb-*'
+Note, selecting 'mariadb-oqgraph-engine-10.1' for glob 'mariadb-*'
+Note, selecting 'mariadb-gssapi-server-10.1' for glob 'mariadb-*'
+Note, selecting 'mariadb-gssapi-server-10.2' for glob 'mariadb-*'
+Note, selecting 'mariadb-test-data-10.0' for glob 'mariadb-*'
+Note, selecting 'mariadb-testsuite-10.1' for glob 'mariadb-*'
+Note, selecting 'mariadb-testsuite-10.3' for glob 'mariadb-*'
+Note, selecting 'mariadb-rocksdb-engine-10.2' for glob 'mariadb-*'
+Note, selecting 'mariadb-rocksdb-engine-10.3' for glob 'mariadb-*'
+Note, selecting 'mariadb-plugin-rocksdb' for glob 'mariadb-*'
+Note, selecting 'mariadb-test-10.0' for glob 'mariadb-*'
+Note, selecting 'mariadb-test-10.1' for glob 'mariadb-*'
+Note, selecting 'mariadb-backup' for glob 'mariadb-*'
+Note, selecting 'mariadb-plugin-connect' for glob 'mariadb-*'
+Note, selecting 'mariadb-backup-10.1' for glob 'mariadb-*'
+Note, selecting 'mariadb-backup-10.2' for glob 'mariadb-*'
+Note, selecting 'mariadb-backup-10.3' for glob 'mariadb-*'
+Note, selecting 'mariadb-test-5.5' for glob 'mariadb-*'
+Note, selecting 'mariadb-server-5.1' for glob 'mariadb-*'
+Note, selecting 'mariadb-server-5.2' for glob 'mariadb-*'
+Note, selecting 'mariadb-server-5.3' for glob 'mariadb-*'
+Note, selecting 'mariadb-server-5.5' for glob 'mariadb-*'
+Note, selecting 'mariadb-server-core-10.0' for glob 'mariadb-*'
+Note, selecting 'mariadb-server-core-10.1' for glob 'mariadb-*'
+Note, selecting 'mariadb-server-core-10.2' for glob 'mariadb-*'
+Note, selecting 'mariadb-server-core-10.3' for glob 'mariadb-*'
+Note, selecting 'mariadb-server-core-10.4' for glob 'mariadb-*'
+Note, selecting 'mariadb-server-core-10.5' for glob 'mariadb-*'
+Note, selecting 'mariadb-server-core-10.6' for glob 'mariadb-*'
+Note, selecting 'mariadb-plugin-cracklib-password-check' for glob 'mariadb-*'
+Note, selecting 'mariadb-plugin-gssapi-client' for glob 'mariadb-*'
+Note, selecting 'mariadb-galera-server' for glob 'mariadb-*'
+Note, selecting 'mariadb-client-10.0' for glob 'mariadb-*'
+Note, selecting 'mariadb-client-10.1' for glob 'mariadb-*'
+Note, selecting 'mariadb-client-10.2' for glob 'mariadb-*'
+Note, selecting 'mariadb-client-10.3' for glob 'mariadb-*'
+Note, selecting 'mariadb-client-10.4' for glob 'mariadb-*'
+Note, selecting 'mariadb-client-10.5' for glob 'mariadb-*'
+Note, selecting 'mariadb-client-10.6' for glob 'mariadb-*'
+Note, selecting 'mariadb-tokudb-engine-10.0' for glob 'mariadb-*'
+Note, selecting 'mariadb-tokudb-engine-10.1' for glob 'mariadb-*'
+Note, selecting 'mariadb-common' for glob 'mariadb-*'
+Note, selecting 'mariadb-client-5.5' for glob 'mariadb-*'
+Note, selecting 'mariadb-plugin-oqgraph' for glob 'mariadb-*'
+Note, selecting 'mariadb-galera-server-10.0' for glob 'mariadb-*'
+Note, selecting 'mariadb-client' for glob 'mariadb-*'
+Note, selecting 'mariadb-server-10.0' for glob 'mariadb-*'
+Note, selecting 'mariadb-server-10.1' for glob 'mariadb-*'
+Note, selecting 'mariadb-server-10.2' for glob 'mariadb-*'
+Note, selecting 'mariadb-server-10.3' for glob 'mariadb-*'
+Note, selecting 'mariadb-server-10.4' for glob 'mariadb-*'
+Note, selecting 'mariadb-server-10.5' for glob 'mariadb-*'
+Note, selecting 'mariadb-server-10.6' for glob 'mariadb-*'
+Note, selecting 'mariadb-gssapi-client-10.1' for glob 'mariadb-*'
+Note, selecting 'mariadb-gssapi-client-10.2' for glob 'mariadb-*'
+Note, selecting 'mariadb-client-core-10.0' for glob 'mariadb-*'
+Note, selecting 'mariadb-client-core-10.1' for glob 'mariadb-*'
+Note, selecting 'mariadb-client-core-10.2' for glob 'mariadb-*'
+Note, selecting 'mariadb-client-core-10.3' for glob 'mariadb-*'
+Note, selecting 'mariadb-client-core-10.4' for glob 'mariadb-*'
+Note, selecting 'mariadb-client-core-10.5' for glob 'mariadb-*'
+Note, selecting 'mariadb-client-core-10.6' for glob 'mariadb-*'
+Note, selecting 'mariadb-test-data' for glob 'mariadb-*'
+Note, selecting 'mariadb-plugin-gssapi-server' for glob 'mariadb-*'
+Package 'mariadb-client-10.1' is not installed, so not removed
+Package 'mariadb-client-10.3' is not installed, so not removed
+Package 'mariadb-client-core-10.1' is not installed, so not removed
+Package 'mariadb-client-core-10.3' is not installed, so not removed
+Package 'mariadb-server-5.5' is not installed, so not removed
+Package 'mariadb-server-10.1' is not installed, so not removed
+Package 'mariadb-server-10.3' is not installed, so not removed
+Package 'mariadb-server-core-10.1' is not installed, so not removed
+Package 'mariadb-server-core-10.3' is not installed, so not removed
+Package 'mariadb-galera-server-10.0' is not installed, so not removed
+Package 'mariadb-galera-server-5.5' is not installed, so not removed
+Package 'mariadb-server-10.0' is not installed, so not removed
+Package 'mariadb-server-5.1' is not installed, so not removed
+Package 'mariadb-server-5.2' is not installed, so not removed
+Package 'mariadb-server-5.3' is not installed, so not removed
+Package 'mariadb-backup-10.1' is not installed, so not removed
+Package 'mariadb-backup-10.2' is not installed, so not removed
+Package 'mariadb-backup-10.3' is not installed, so not removed
+Package 'mariadb-client-10.0' is not installed, so not removed
+Package 'mariadb-client-10.2' is not installed, so not removed
+Package 'mariadb-client-10.4' is not installed, so not removed
+Package 'mariadb-client-10.5' is not installed, so not removed
+Package 'mariadb-client-5.5' is not installed, so not removed
+Package 'mariadb-client-core-10.0' is not installed, so not removed
+Package 'mariadb-client-core-10.2' is not installed, so not removed
+Package 'mariadb-client-core-10.4' is not installed, so not removed
+Package 'mariadb-client-core-10.5' is not installed, so not removed
+Package 'mariadb-client-core-5.5' is not installed, so not removed
+Package 'mariadb-connect-engine-10.0' is not installed, so not removed
+Package 'mariadb-connect-engine-10.1' is not installed, so not removed
+Package 'mariadb-gssapi-client-10.1' is not installed, so not removed
+Package 'mariadb-gssapi-client-10.2' is not installed, so not removed
+Package 'mariadb-gssapi-server-10.1' is not installed, so not removed
+Package 'mariadb-gssapi-server-10.2' is not installed, so not removed
+Package 'mariadb-oqgraph-engine-10.0' is not installed, so not removed
+Package 'mariadb-oqgraph-engine-10.1' is not installed, so not removed
+Package 'mariadb-rocksdb-engine-10.2' is not installed, so not removed
+Package 'mariadb-rocksdb-engine-10.3' is not installed, so not removed
+Package 'mariadb-tokudb-engine-10.0' is not installed, so not removed
+Package 'mariadb-tokudb-engine-10.1' is not installed, so not removed
+Package 'mariadb-tokudb-engine-5.5' is not installed, so not removed
+Package 'mariadb-galera-server' is not installed, so not removed
+Package 'mariadb-server-10.2' is not installed, so not removed
+Package 'mariadb-server-10.4' is not installed, so not removed
+Package 'mariadb-server-10.5' is not installed, so not removed
+Package 'mariadb-server-core-10.0' is not installed, so not removed
+Package 'mariadb-server-core-10.2' is not installed, so not removed
+Package 'mariadb-server-core-10.4' is not installed, so not removed
+Package 'mariadb-server-core-10.5' is not installed, so not removed
+Package 'mariadb-server-core-5.5' is not installed, so not removed
+Package 'mariadb-test-10.0' is not installed, so not removed
+Package 'mariadb-test-10.1' is not installed, so not removed
+Package 'mariadb-test-5.5' is not installed, so not removed
+Package 'mariadb-test-data-10.0' is not installed, so not removed
+Package 'mariadb-testsuite-10.1' is not installed, so not removed
+Package 'mariadb-testsuite-10.3' is not installed, so not removed
+Package 'mariadb-backup' is not installed, so not removed
+Package 'mariadb-client' is not installed, so not removed
+Package 'mariadb-plugin-connect' is not installed, so not removed
+Package 'mariadb-plugin-cracklib-password-check' is not installed, so not removed
+Package 'mariadb-plugin-gssapi-client' is not installed, so not removed
+Package 'mariadb-plugin-gssapi-server' is not installed, so not removed
+Package 'mariadb-plugin-mroonga' is not installed, so not removed
+Package 'mariadb-plugin-oqgraph' is not installed, so not removed
+Package 'mariadb-plugin-rocksdb' is not installed, so not removed
+Package 'mariadb-plugin-s3' is not installed, so not removed
+Package 'mariadb-plugin-spider' is not installed, so not removed
+Package 'mariadb-test' is not installed, so not removed
+Package 'mariadb-test-data' is not installed, so not removed
+The following packages were automatically installed and are no longer required:
+  apache2-data apache2-utils galera-4 libcgi-fast-perl libcgi-pm-perl libclone-perl libconfig-inifiles-perl libdaxctl1
+  libdbd-mysql-perl libdbi-perl libencode-locale-perl libfcgi-bin libfcgi-perl libfcgi0ldbl libhtml-parser-perl
+  libhtml-tagset-perl libhtml-template-perl libhttp-date-perl libhttp-message-perl libio-html-perl liblwp-mediatypes-perl
+  libmysqlclient21 libndctl6 libpmem1 libsnappy1v5 libtimedate-perl liburi-perl mysql-common socat ssl-cert
+Use 'sudo apt autoremove' to remove them.
+The following packages will be REMOVED:
+  libmariadb3* mariadb-client-10.6* mariadb-client-core-10.6* mariadb-common* mariadb-server* mariadb-server-10.6*
+  mariadb-server-core-10.6*
+0 upgraded, 0 newly installed, 7 to remove and 62 not upgraded.
+After this operation, 149 MB disk space will be freed.
+(Reading database ... 82938 files and directories currently installed.)
+Removing mariadb-server (1:10.6.12-0ubuntu0.22.04.1) ...
+Removing mariadb-server-10.6 (1:10.6.12-0ubuntu0.22.04.1) ...
+Removing mariadb-client-10.6 (1:10.6.12-0ubuntu0.22.04.1) ...
+Removing mariadb-client-core-10.6 (1:10.6.12-0ubuntu0.22.04.1) ...
+Removing libmariadb3:amd64 (1:10.6.12-0ubuntu0.22.04.1) ...
+Removing mariadb-server-core-10.6 (1:10.6.12-0ubuntu0.22.04.1) ...
+Removing mariadb-common (1:10.6.12-0ubuntu0.22.04.1) ...
+update-alternatives: using /etc/mysql/my.cnf.fallback to provide /etc/mysql/my.cnf (my.cnf) in auto mode
+Processing triggers for man-db (2.10.2-1) ...
+Processing triggers for libc-bin (2.35-0ubuntu3.3) ...
+(Reading database ... 82599 files and directories currently installed.)
+Purging configuration files for mariadb-common (1:10.6.12-0ubuntu0.22.04.1) ...
+Purging configuration files for mariadb-server-10.6 (1:10.6.12-0ubuntu0.22.04.1) ...
+Purging configuration files for mariadb-client-10.6 (1:10.6.12-0ubuntu0.22.04.1) ...
+
+Desinstalando php
+
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following packages were automatically installed and are no longer required:
+  apache2-bin apache2-data apache2-utils galera-4 libapache2-mod-php8.1 libapr1 libaprutil1 libaprutil1-dbd-sqlite3
+  libaprutil1-ldap libcgi-fast-perl libcgi-pm-perl libclone-perl libconfig-inifiles-perl libdaxctl1 libdbd-mysql-perl
+  libdbi-perl libencode-locale-perl libfcgi-bin libfcgi-perl libfcgi0ldbl libhtml-parser-perl libhtml-tagset-perl
+  libhtml-template-perl libhttp-date-perl libhttp-message-perl libio-html-perl liblua5.3-0 liblwp-mediatypes-perl
+  libmysqlclient21 libndctl6 libonig5 libpmem1 libsnappy1v5 libtimedate-perl liburi-perl libzip4 mysql-common php-common
+  php8.1 php8.1-cli php8.1-common php8.1-curl php8.1-gd php8.1-mbstring php8.1-mysql php8.1-opcache php8.1-readline php8.1-zip
+  socat ssl-cert
+Use 'sudo apt autoremove' to remove them.
+The following packages will be REMOVED:
+  libapache2-mod-php* php* php-curl* php-gd* php-json* php-mbstring* php-mysql* php-zip*
+0 upgraded, 0 newly installed, 8 to remove and 62 not upgraded.
+After this operation, 119 kB disk space will be freed.
+(Reading database ... 82582 files and directories currently installed.)
+Removing libapache2-mod-php (2:8.1+92ubuntu1) ...
+Removing php (2:8.1+92ubuntu1) ...
+Removing php-curl (2:8.1+92ubuntu1) ...
+Removing php-gd (2:8.1+92ubuntu1) ...
+Removing php-json (2:8.1+92ubuntu1) ...
+Removing php-mbstring (2:8.1+92ubuntu1) ...
+Removing php-mysql (2:8.1+92ubuntu1) ...
+Removing php-zip (2:8.1+92ubuntu1) ...
+
+Desinstalacion completada!!!
+
+root@ubuntu2204:/home/vagrant/bootcamp-devops-2023/ejercicio1#
