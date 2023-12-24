@@ -1,0 +1,91 @@
+version: '3.8'
+services:
+  # Servicio para el frontend
+  frontend:
+    # Se construye el contenedor para ./frontend
+    # Imagen que se va a utilizar para crear el contenedor
+    image: yazmanireyesh/295topics-fullstack-frontend:v1.0
+    # Nombre del contenedor
+    container_name: frontend-295topics-fullstack
+    # Variables de entorno
+    environment:
+      # Esta será la URL de la API a la que el frontend se conectará (El backend).
+      - API_URI=http://backend-295topics-fullstack:5000/api/topics
+    # De quién depende este contenedor?
+    depends_on:
+      - backend
+      - db
+    # Puertos
+    ports:
+      - "3000:3000"
+    # Redes en las que estará configurado el contenedor
+    networks:
+      - frontend
+      - backend
+  # Servicio para el backend
+  backend:
+    # Se construye el contenedor para ./backend
+    # Imagen que se va a utilizar para crear el contenedor
+    image: yazmanireyesh/295topics-fullstack-backend:v1.0
+    # Nombre del contenedor
+    container_name: backend-295topics-fullstack
+    # Variables de entorno
+    env_file:
+      # Variables para la conexion a la base de datos de MongoDB, Host y Puerto
+      - ./backend/.env.template
+    # De quién depende este contenedor?
+    depends_on:
+      - db
+    # Puertos
+    ports:
+      - "5000:5000"
+    # Redes en las que estará configurado el contenedor
+    networks:
+      - backend
+  # Servicio para la base de datos de MongoDB
+  db:
+    # Se construye el contenedor para ./db
+    # Imagen que se va a utilizar para crear el contenedor
+    image: mongo
+    # Nombre del contenedor
+    container_name: bd
+    # Puertos
+    ports:
+      - "27017:27017"
+    # Redes en las que estará configurado el contenedor
+    networks:
+      - backend
+    # Volumenes que utilizará el contenedor
+    volumes:
+      - ./db/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+      - mongo-data:/data/db
+  # Servicio para el gestor de MongoDB
+  mongo-express:
+    # Se construye el contenedor para el gestor de la base de datos
+    # Imagen que se va a utilizar para crear el contenedor
+    image: mongo-express:1.0.0-20-alpine3.18
+    # Nombre del contenedor
+    container_name: mongo-express
+    # Variables de entorno
+    environment:
+      #Variables para la conexion a la base de datos de MongoDB
+      - ME_CONFIG_MONGODB_SERVER=db
+      - ME_CONFIG_MONGODB_PORT=27017
+      - ME_CONFIG_BASICAUTH_USERNAME=admin
+      - ME_CONFIG_BASICAUTH_PASSWORD=password
+    # De quién depende este contenedor?
+    depends_on:
+      - db
+    # Puertos
+    ports:
+      - "8081:8081"
+    # Redes en las que estará configurado el contenedor
+    networks:
+      - backend
+# Volumenes requeridos para el despliegue de la aplicación
+volumes:
+  mongo-data:
+# Redes requeridas para el despliegue de la aplicación
+networks:
+  frontend:
+  backend:

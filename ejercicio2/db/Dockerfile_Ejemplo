@@ -1,0 +1,8 @@
+# Indicamos que se debe utilizar la imagen base oficial de MongoDB
+FROM mongo
+# Documentamos que el contenedor escuchará en el puerto 27017
+EXPOSE 27017
+# Copiamos el archivo mongo-init.js desde el directorio de construcción local al directorio /docker-entrypoint-initdb.d/ dentro del contenedor
+# En una imagen de MongoDB oficial, el contenido de este directorio se ejecuta durante la inicialización de la base de datos. 
+# Esto te permite ejecutar scripts de inicialización para configurar la base de datos o insertar datos iniciales.
+COPY mongo-init.js /docker-entrypoint-initdb.d/*.js
