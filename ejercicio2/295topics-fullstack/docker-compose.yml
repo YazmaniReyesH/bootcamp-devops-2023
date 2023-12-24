@@ -46,7 +46,7 @@ services:
   db:
     # Se construye el contenedor para ./db
     # Imagen que se va a utilizar para crear el contenedor
-    image: mongo
+    image: mongo:jammy
     # Nombre del contenedor
     container_name: bd
     # Puertos
