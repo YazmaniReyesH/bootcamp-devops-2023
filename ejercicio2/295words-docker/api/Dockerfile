@@ -24,6 +24,4 @@ RUN mvn clean install
 EXPOSE 8080
 # Definimos el comando predeterminado que se ejecutará cuando el contenedor se inicie. 
 # En este caso, se está ejecutando el comando java para ejecutar un archivo JAR (-jar) llamado words.jar que se encuentra en la ruta /api/target/ dentro del contenedor
-CMD ["java", "-jar", "/target/words.jar"]
-
-
+CMD ["java", "-jar", "/app/target/words.jar"]
