@@ -1,0 +1,63 @@
+version: '3.3'
+services:
+  # Servicio para web
+  web:
+    # Se construye el contenedor para ./web
+    # Imagen que se va a utilizar para crear el contenedor
+    image: yazmanireyesh/295words-docker-web:v1.0
+    # Nombre del contenedor
+    container_name: web-295words-docker
+    # De quién depende este contenedor?
+    depends_on:
+      - api
+      - db
+    # Puertos
+    ports:
+      - 8080:80
+    # Redes en las que estará configurado el contenedor
+    networks:
+      - frontend
+      - backend
+  # Servicio para api
+  api:
+    # Se construye el contenedor para ./api
+    # Imagen que se va a utilizar para crear el contenedor
+    image: yazmanireyesh/295words-docker-api:v1.0
+    # Nombre del contenedor
+    container_name: api-295words-docker
+    # De quién depende este contenedor?
+    depends_on:
+      - db
+    # Puertos
+    # Redes en las que estará configurado el contenedor
+    networks:
+      - backend
+  # Servicio para la base de datos de postgress
+  db:
+    # Se construye el contenedor para ./db
+    # Imagen que se va a utilizar para crear el contenedor
+    image: postgres:15-alpine
+    # Nombre del contenedor
+    container_name: bd
+    # Variables de entorno
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+    # Puertos
+    ports:
+      - 5432:5432
+    # Redes en las que estará configurado el contenedor
+    networks:
+      - backend
+    # Volumenes que utilizará el contenedor
+    volumes:
+      - ./db/words.sql:/docker-entrypoint-initdb.d/words.sql:ro
+      - postgres-data:/var/lib/postgresql/data
+# Volumenes requeridos para el despliegue de la aplicación
+volumes:
+  postgres-data:
+# Redes requeridas para el despliegue de la aplicación
+networks:
+  frontend:
+  backend:
