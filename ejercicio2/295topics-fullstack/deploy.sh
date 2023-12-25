@@ -17,6 +17,16 @@ DOCKER_REPO_BACKEND="docker.io/${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME_BACKEND}"
 # Definimos las variables para la conexión al repositorio y directorio del proyecto en Github
 REPO="bootcamp-devops-2023"
 
+# Función para instalar y configurar Git
+install_git() {
+    echo -e "${BLUE}Instalando y Configurando Git...${NC}"
+	apt install -y git
+	git config --list
+    git config --global user.name "YazmaniReyesH"
+    git config --global user.email "yazmani.reyesh@gmail.com"
+	git config --global --add safe.directory '*'
+}
+
 # Validamos si el repositorio ya existe y si no lo clonamos
 echo -e "\n${LGREEN}Validando y clonando el repositorio...${NC}"
 if [ -d "bootcamp-devops-2023" ]; then
@@ -28,44 +38,32 @@ fi
 echo -e "\n${LGREEN}El repositorio 'bootcamp-devops-2023' no se encuentra en el sistema. Clonando el repositorio...${NC}"
 git clone https://github.com/yazmanireyesh/$REPO.git
 
-# Construimos las imagenes de Docker
-echo -e "\n${LGREEN}Construyendo las imagenes de Docker ...${NC}"
-# Obtenemos la ultima etiqueta (tag) en el repositorio git y asiganmos ese valor a una variables
-# La opcion --tags indica que se deben incluir las etiquetas en la descripcion y --abbrev=0 significa que se utilizará la versión completa de la etiqueta
-echo -e "\n${LGREEN}Obteniendo etiqueta y version ...${NC}"
-VERSION=$(git describe --tags --abbrev=0)
-echo -e "\n${LGREEN}Desplazandose al directorio del proyecto ...${NC}"
-cd bootcamp-devops-2023
-cd ejercicio2
-cd 295topics-fullstack
-docker build -t ${DOCKER_IMAGE_NAME_FRONTEND} ./frontend
-docker build -t ${DOCKER_IMAGE_NAME_BACKEND} ./backend
-echo -e "\n${LGREEN}Imagenes construidas correctamente...${NC}"
-
-# Etiquetamos las imagenes con la versión correspondiente
-echo -e "\n${LGREEN}Etiquetando las imagenes con la versión correspondiente ...${NC}"
-docker tag ${DOCKER_IMAGE_NAME_FRONTEND} ${DOCKER_REPO_FRONTEND}:${VERSION}
-docker tag ${DOCKER_IMAGE_NAME_BACKEND} ${DOCKER_REPO_BACKEND}:${VERSION}
-echo -e "\n${LGREEN}Imagenes etiquetadas correctamente ...${NC}"
-
 # Iniciamos sesión en la cuenta de Docker Hub del usuario
 echo -e "\n${LGREEN}Iniciando sesión en la cuenta de Docker Hub del usuario...${NC}" 
-echo "${DOCKER_PASSWORD}" | docker login --username "${DOCKER_USERNAME}" --password-stdin
+echo -n "${DOCKER_PASSWORD}" | docker login --username "${DOCKER_USERNAME}" --password-stdin
+
+# Construimos las imagenes de Docker
+echo -e "\n${LGREEN}Desplazandose al directorio del proyecto ...${NC}"
+cd bootcamp-devops-2023
+chmod -R +x ./ejercicio2
+cd ejercicio2
+cd 295topics-fullstack
+
+echo -e "\n${LGREEN}Construyendo y etiquetando las imagenes de Docker ...${NC}"
+docker build -t ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME_FRONTEND}:v1.0 ./frontend
+docker build -t ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME_BACKEND}:v1.0 ./backend
+echo -e "\n${LGREEN}Imagenes construidas correctamente...${NC}"
 
 # Subimos las imagenes a la cuenta de Docker Hub del usuario
 echo -e "\n${LGREEN}Subiendo las imagenes a la cuenta de Docker Hub del usuario ...${NC}"
-docker push ${DOCKER_REPO_FRONTEND}:${VERSION}
-docker push ${DOCKER_REPO_BACKEND}:${VERSION}
+docker push ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME_FRONTEND}:v1.0
+docker push ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME_BACKEND}:v1.0
 echo -e "\n${LGREEN}Imagenes subidas a Docker Hub ...${NC}"
 
-# Detenemos y eliminamos los contenedores existentes en el sistema...${NC}"
-docker-compose down
-echo -e "\n${LGREEN}Deteniendo y eliminando los contenedores existentes en el sistema...${NC}"
-docker-compose down
-
-# Exportar la versión de la imagen como variable de entorno
-# Esto establece la variable de entorno IMAGE_VERSION con el valor de la versión obtenida desde Git.
-export IMAGE_VERSION=${VERSION}
+# Detenemos y eliminamos los contenedores e imagenes existentes en el sistema...${NC}"
+echo -e "\n${LGREEN}Deteniendo y eliminando los contenedores e imagenes existentes en el sistema...${NC}"
+docker rmi $(docker images -q) --force
+docker rm $(docker ps -aq) --force
 
 # Iniciamos contenedores con la nueva versión
 # La versión de la imagen Docker a utilizar se establece a través de la variable de entorno IMAGE_VERSION.
