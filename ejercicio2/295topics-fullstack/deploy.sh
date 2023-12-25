@@ -4,16 +4,11 @@ LGREEN='\033[1;32m'
 NC='\033[0m'
 
 # Definimos las variables para la conexión a la cuenta de Docker Hub
-#DOCKER_USERNAME="Coloca aqui tu usuario de Docker Hub"
-#DOCKER_PASSWORD="Coloca aqui tu password de Docker Hub"
-DOCKER_USERNAME="yazmanireyesh"
-DOCKER_PASSWORD="Yazmani1988@"
+DOCKER_USERNAME="Coloca aqui tu usuario de Docker Hub"
+DOCKER_PASSWORD="Coloca aqui tu password de Docker Hub"
 # Definimos los nombres de las imagenes que se van a subir a Docker Hub
 DOCKER_IMAGE_NAME_FRONTEND="295topics-fullstack-frontend"
 DOCKER_IMAGE_NAME_BACKEND="295topics-fullstack-backend"
-# Definimos las variables para la conexión a las imagenes subidas a Docker Hub
-DOCKER_REPO_FRONTEND="docker.io/${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME_FRONTEND}"
-DOCKER_REPO_BACKEND="docker.io/${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME_BACKEND}"
 # Definimos las variables para la conexión al repositorio y directorio del proyecto en Github
 REPO="bootcamp-devops-2023"
 
