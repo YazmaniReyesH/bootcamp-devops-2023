@@ -60,7 +60,6 @@ echo -e "\n${LGREEN}Deteniendo y eliminando los contenedores e imagenes existent
 docker rmi $(docker images -q) --force
 docker rm $(docker ps -aq) --force
 
-# Iniciamos contenedores con la nueva versión
-# La versión de la imagen Docker a utilizar se establece a través de la variable de entorno IMAGE_VERSION.
-echo -e "\n${LGREEN}Iniciando contenedores con la nueva versión ...${NC}"
+# Iniciamos los contenedores con la versión correspondiente
+echo -e "\n${LGREEN}Iniciando los contenedores con la version correspondiente ...${NC}"
 docker-compose up
