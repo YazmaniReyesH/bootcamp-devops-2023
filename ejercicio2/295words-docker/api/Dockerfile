@@ -17,7 +17,7 @@ COPY pom.xml /app
 # Copiamos todos los archivos restantes del directorio de construcción local al directorio /app dentro del contenedor
 # Esto incluirá los archivos fuente y cualquier otro archivo necesario para la aplicación
 COPY . /app
-# Ejecutamos el comando Maven para compilar y empaquetar la aplicación. 
+# Ejecutamos el comando Maven para compilar y empaquetar la aplicacion. 
 # Esto utilizará el archivo pom.xml y los archivos fuente copiados anteriormente.
 RUN mvn clean install
 # Exponemos el puerto
