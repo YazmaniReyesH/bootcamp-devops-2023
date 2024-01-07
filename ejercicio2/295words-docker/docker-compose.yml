@@ -4,7 +4,9 @@ services:
   web:
     # Se construye el contenedor para ./web
     # Imagen que se va a utilizar para crear el contenedor
-    image: yazmanireyesh/295words-docker-web:v1.0
+    # La parte ${IMAGE_VERSION} especifica la etiqueta o versión de la imagen. 
+    # Aquí se está utilizando la variable de entorno IMAGE_VERSION que previamente se asignó a través de export IMAGE_VERSION=${TAG_VERSION} en el archivo deploy.sh
+    image: yazmanireyesh/295words-docker-web:${IMAGE_VERSION}
     # Nombre del contenedor
     container_name: web-295words-docker
     # De quién depende este contenedor?
@@ -21,8 +23,10 @@ services:
   # Servicio para api
   api:
     # Se construye el contenedor para ./api
-    # Imagen que se va a utilizar para crear el contenedor
-    image: yazmanireyesh/295words-docker-api:v1.0
+    # Imagen que se va a utilizar para crear el contenedor.
+    # La parte ${IMAGE_VERSION} especifica la etiqueta o versión de la imagen. 
+    # Aquí se está utilizando la variable de entorno IMAGE_VERSION que previamente se asignó a través de export IMAGE_VERSION=${TAG_VERSION} en el archivo deploy.sh 
+    image: yazmanireyesh/295words-docker-api:${IMAGE_VERSION}
     # Nombre del contenedor
     container_name: api-295words-docker
     # De quién depende este contenedor?

@@ -46,21 +46,31 @@ chmod -R +x ./ejercicio2
 cd ejercicio2
 cd 295words-docker
 
+# Declaramos una variable que contendrá el nombre de la última etiqueta en nuestro repositorio de Git.
+# Esto obtendrá la descripción de la última etiqueta (tag) disponible en el historial de Git.
+# Esto es util para incorporar información de versiónes en los scripts o procesos de construcción.
+TAG_VERSION=$(git describe --tags --abbrev=0)
+
 echo -e "\n${LGREEN}Construyendo y etiquetando las imagenes de Docker ...${NC}"
-docker build -t ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME_WEB}:v1.0 ./web
-docker build -t ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME_API}:v1.0 ./api
+docker build -t ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME_WEB}:${TAG_VERSION} ./web
+docker build -t ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME_API}:${TAG_VERSION} ./api
 echo -e "\n${LGREEN}Imagenes construidas correctamente...${NC}"
 
 # Subimos las imagenes a la cuenta de Docker Hub del usuario
 echo -e "\n${LGREEN}Subiendo las imagenes a la cuenta de Docker Hub del usuario ...${NC}"
-docker push ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME_WEB}:v1.0
-docker push ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME_API}:v1.0
+docker push ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME_WEB}:${TAG_VERSION}
+docker push ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME_API}:${TAG_VERSION}
 echo -e "\n${LGREEN}Imagenes subidas a Docker Hub ...${NC}"
 
 # Detenemos y eliminamos los contenedores e imagenes existentes en el sistema...${NC}"
 echo -e "\n${LGREEN}Deteniendo y eliminando los contenedores e imagenes existentes en el sistema...${NC}"
 docker rmi $(docker images -q) --force
 docker rm $(docker ps -aq) --force
+
+# Creamos una variable de entorno a la cual le asignaremos el valor de la variable TAG_VERSION que contiene la ultima etiqueta del historial de Git.
+# Este tipo de construcción de variables de entorno es común en scripts de construcción de Docker o en scripts de automatización de despliegues, 
+# donde la versión del software es una información importante y se utiliza para etiquetar imágenes Docker, versionar artefactos, etc
+export IMAGE_VERSION=${TAG_VERSION}
 
 # Iniciamos contenedores con la versión correspondiente
 echo -e "\n${LGREEN}Iniciando los contenedores con la versión correspondiente...${NC}"
