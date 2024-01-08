@@ -6,8 +6,6 @@ NC='\033[0m'
 # Definimos las variables para la conexión a la cuenta de Docker Hub
 #DOCKER_USERNAME="Coloca aqui tu usuario de Docker Hub"
 #DOCKER_PASSWORD="Coloca aqui tu password de Docker Hub"
-DOCKER_USERNAME="yazmanireyesh"
-DOCKER_PASSWORD="Yazmani1988@"
 # Definimos los nombres de las imagenes que se van a subir a Docker Hub
 DOCKER_IMAGE_NAME_WEB="295words-docker-web"
 DOCKER_IMAGE_NAME_API="295words-docker-api"
@@ -62,7 +60,7 @@ docker push ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME_WEB}:${TAG_VERSION}
 docker push ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME_API}:${TAG_VERSION}
 echo -e "\n${LGREEN}Imagenes subidas a Docker Hub ...${NC}"
 
-# Detenemos y eliminamos los contenedores e imagenes existentes en el sistema...${NC}"
+# Detenemos y eliminamos los contenedores e imagenes existentes en el sistema
 echo -e "\n${LGREEN}Deteniendo y eliminando los contenedores e imagenes existentes en el sistema...${NC}"
 docker rmi $(docker images -q) --force
 docker rm $(docker ps -aq) --force

@@ -4,8 +4,8 @@ LGREEN='\033[1;32m'
 NC='\033[0m'
 
 # Definimos las variables para la conexión a la cuenta de Docker Hub
-DOCKER_USERNAME="Coloca aqui tu usuario de Docker Hub"
-DOCKER_PASSWORD="Coloca aqui tu password de Docker Hub"
+#DOCKER_USERNAME="Coloca aqui tu usuario de Docker Hub"
+#DOCKER_PASSWORD="Coloca aqui tu password de Docker Hub"
 # Definimos los nombres de las imagenes que se van a subir a Docker Hub
 DOCKER_IMAGE_NAME_FRONTEND="295topics-fullstack-frontend"
 DOCKER_IMAGE_NAME_BACKEND="295topics-fullstack-backend"
@@ -29,7 +29,7 @@ if [ -d "bootcamp-devops-2023" ]; then
     rm -rf bootcamp-devops-2023
 fi
 
-# Clonar el repositorio desde GitHub
+# Clonamos el repositorio desde GitHub
 echo -e "\n${LGREEN}El repositorio 'bootcamp-devops-2023' no se encuentra en el sistema. Clonando el repositorio...${NC}"
 git clone https://github.com/yazmanireyesh/$REPO.git
 
@@ -55,7 +55,7 @@ docker push ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME_FRONTEND}:v1.0
 docker push ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME_BACKEND}:v1.0
 echo -e "\n${LGREEN}Imagenes subidas a Docker Hub ...${NC}"
 
-# Detenemos y eliminamos los contenedores e imagenes existentes en el sistema...${NC}"
+# Detenemos y eliminamos los contenedores e imagenes existentes en el sistema
 echo -e "\n${LGREEN}Deteniendo y eliminando los contenedores e imagenes existentes en el sistema...${NC}"
 docker rmi $(docker images -q) --force
 docker rm $(docker ps -aq) --force
