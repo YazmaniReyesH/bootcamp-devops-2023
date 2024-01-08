@@ -6,6 +6,8 @@ NC='\033[0m'
 # Definimos las variables para la conexión a la cuenta de Docker Hub
 #DOCKER_USERNAME="Coloca aqui tu usuario de Docker Hub"
 #DOCKER_PASSWORD="Coloca aqui tu password de Docker Hub"
+DOCKER_USERNAME="yazmanireyesh"
+DOCKER_PASSWORD="Yazmani1988@"
 # Definimos los nombres de las imagenes que se van a subir a Docker Hub
 DOCKER_IMAGE_NAME_WEB="295words-docker-web"
 DOCKER_IMAGE_NAME_API="295words-docker-api"
